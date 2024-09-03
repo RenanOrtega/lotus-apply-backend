@@ -3,7 +3,7 @@ const router = express.Router();
 
 const ApplyService = require('../services/applyServices');
 
-app.get('/healthcheck', (req, res) => res.send('Apply Route is Working.'));
+router.get('/healthcheck', (req, res) => res.send('Apply Route is Working.'));
 
 router.post('/form', async (req, res) => {
     try {
