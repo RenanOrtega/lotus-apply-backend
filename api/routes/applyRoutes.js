@@ -5,7 +5,7 @@ const ApplyService = require('../services/applyServices');
 
 router.get('/healthcheck', (req, res) => res.send('Apply Route is Working.'));
 
-router.post('/form', async (req, res) => {
+router.post('/apply', async (req, res) => {
     try {
         const data = req.body;
         const result = await ApplyService.createApply(data);
@@ -20,7 +20,7 @@ router.post('/form', async (req, res) => {
     }
 })
 
-router.get('/positions-count', async (req, res) => {
+router.get('/positions', async (req, res) => {
     try {
         const result = await ApplyService.getPositionsCount();
         res.json(result);
@@ -30,7 +30,7 @@ router.get('/positions-count', async (req, res) => {
     }
 });
 
-router.get('/elo-count', async (req, res) => {
+router.get('/elos', async (req, res) => {
     try {
         const result = await ApplyService.getElosCount();
         res.json(result);
