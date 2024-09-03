@@ -5,12 +5,14 @@ require('dotenv').config();
 require('./config/db');
 
 const app = express();
-
+const corsOptions = {
+    origin: ''
+}
 app.use(cors())
 app.use(express.json());
 app.use('/', applyRoutes);
 
-app.get('/', (req, res) => res.send('Working.'));
+app.get('/', (req, res) => res.send('Sai daqui seu safado 🐱‍👤.'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
