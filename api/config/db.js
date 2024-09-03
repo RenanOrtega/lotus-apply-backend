@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const uri = process.env.MONGODB_URI || 'mongodb+srv://renanortegadev:cJ04gyxeCY0fHWM8@lotus-apply.g4raz.mongodb.net/?retryWrites=true&w=majority&appName=lotus-apply';
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri);
 
