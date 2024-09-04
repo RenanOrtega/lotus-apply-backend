@@ -5,6 +5,7 @@ const applySchema = new mongoose.Schema({
     nick: String,
     position: String,
     elo: String,
+    opgg: String,
     days: [String],
     hours: [String]
 });

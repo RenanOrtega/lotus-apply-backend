@@ -5,9 +5,6 @@ require('dotenv').config();
 require('./config/db');
 
 const app = express();
-const corsOptions = {
-    origin: ''
-}
 app.use(cors())
 app.use(express.json());
 app.use('/', applyRoutes);

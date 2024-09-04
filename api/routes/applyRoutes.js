@@ -40,4 +40,14 @@ router.get('/elos', async (req, res) => {
     }
 });
 
+router.get('/elos', async (req, res) => {
+    try {
+        const result = await ApplyService.getElosCount();
+        res.json(result);
+    } catch (error) {
+        console.error('Erro ao obter contagem de elo:', error);
+        res.status(500).json({ message: 'Erro ao obter contagem de elo' });
+    }
+});
+
 module.exports = router;
