@@ -50,4 +50,14 @@ router.get('/elos', async (req, res) => {
     }
 });
 
+router.get('/candidates', async (req, res) => {
+    try {
+        const result = await ApplyService.getCandidatesAsync();
+        res.json(result);
+    } catch (error) {
+        console.error('Erro ao obter candidatos:', error);
+        res.status(500).json({ message: 'Erro ao obter candidatos.'})
+    }
+})
+
 module.exports = router;

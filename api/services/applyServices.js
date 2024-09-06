@@ -34,6 +34,11 @@ class ApplyService {
             return acc;
         }, {});
     }
+
+    static async getCandidatesAsync(){
+        const candidates = await Apply.find({}, '-_id -__v');
+        return candidates;
+    }
 }
 
 module.exports = ApplyService;
