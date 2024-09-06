@@ -15,7 +15,7 @@ router.post('/apply', async (req, res) => {
             res.status(409).json({ message: err.message });
         } else {
             console.error('Erro ao salvar dados:', err);
-            res.status(500).json({ message: 'Erro ao salvar dados' });
+            res.status(500).json({ message: `${err}` });
         }
     }
 })
@@ -52,7 +52,18 @@ router.get('/elos', async (req, res) => {
 
 router.get('/candidates', async (req, res) => {
     try {
-        const result = await ApplyService.getCandidatesAsync();
+        const { elo , position } = req.query;
+        const filters = {};
+
+        if (elo) {
+            filters.elo = elo;
+        }
+
+        if (position) {
+            filters.position = position;
+        }
+
+        const result = await ApplyService.getCandidatesAsync(filters);
         res.json(result);
     } catch (error) {
         console.error('Erro ao obter candidatos:', error);

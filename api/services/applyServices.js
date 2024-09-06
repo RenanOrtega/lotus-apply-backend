@@ -2,6 +2,9 @@ const Apply = require('../models/apply');
 
 class ApplyService {
     static async createApply(data) {
+        const requiredFields = ['name', 'nick', 'discord', 'position', 'elo', 'opgg'];
+        this.validateFields(data, requiredFields);
+
         const existingApply = await Apply.findOne({ nick: data.nick });
         if (existingApply){
             throw new Error('Já existe um cadastro com esse nick.');
@@ -35,9 +38,17 @@ class ApplyService {
         }, {});
     }
 
-    static async getCandidatesAsync(){
-        const candidates = await Apply.find({}, '-_id -__v');
+    static async getCandidatesAsync(filters){
+        const candidates = await Apply.find(filters, '-_id -__v');
         return candidates;
+    }
+
+    static validateFields(data, fields) {
+        for (const field of fields) {
+            if (!data[field] || data[field].trim() === "") {
+                throw new Error(`O campo ${field} não pode estar vazio.`);
+            }
+        }
     }
 }
 
