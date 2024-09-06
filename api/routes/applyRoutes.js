@@ -15,7 +15,7 @@ router.post('/apply', async (req, res) => {
             res.status(409).json({ message: err.message });
         } else {
             console.error('Erro ao salvar dados:', err);
-            res.status(500).json({ message: 'Erro ao salvar dados' });
+            res.status(500).json({ message: `${err}` });
         }
     }
 })
