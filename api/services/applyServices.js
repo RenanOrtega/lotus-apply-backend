@@ -38,8 +38,8 @@ class ApplyService {
         }, {});
     }
 
-    static async getCandidatesAsync(){
-        const candidates = await Apply.find({}, '-_id -__v');
+    static async getCandidatesAsync(filters){
+        const candidates = await Apply.find(filters, '-_id -__v');
         return candidates;
     }
 

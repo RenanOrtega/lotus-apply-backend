@@ -52,7 +52,18 @@ router.get('/elos', async (req, res) => {
 
 router.get('/candidates', async (req, res) => {
     try {
-        const result = await ApplyService.getCandidatesAsync();
+        const { elo , position } = req.query;
+        const filters = {};
+
+        if (elo) {
+            filters.elo = elo;
+        }
+
+        if (position) {
+            filters.position = position;
+        }
+
+        const result = await ApplyService.getCandidatesAsync(filters);
         res.json(result);
     } catch (error) {
         console.error('Erro ao obter candidatos:', error);
