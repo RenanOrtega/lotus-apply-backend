@@ -1,13 +1,13 @@
 const express = require('express');
 const cors = require('cors');
-const applyRoutes = require('./routes/applyRoutes');
+const applyRoute = require('./routes/applyRoute');
 require('dotenv').config();
 require('./config/db');
 
 const app = express();
 app.use(cors())
 app.use(express.json());
-app.use('/', applyRoutes);
+app.use('/', applyRoute);
 
 app.get('/', (req, res) => res.send('Sai daqui seu safado 🐱‍👤.'));
 

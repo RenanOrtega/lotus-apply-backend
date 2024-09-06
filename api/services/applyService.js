@@ -1,6 +1,24 @@
+const eloMap = require('../mappings/apply/eloMap');
+const positionMap = require('../mappings/apply/positionMap');
 const Apply = require('../models/apply');
 
 class ApplyService {
+    static formatCandidate(candidate) {
+        return {
+            ...candidate._doc,
+            elo: eloMap[candidate.elo] || candidate.elo,
+            position: positionMap[candidate.position] || candidate.position,
+        };
+    }
+
+    static validateFields(data, fields) {
+        for (const field of fields) {
+            if (!data[field] || data[field].trim() === "") {
+                throw new Error(`O campo ${field} não pode estar vazio.`);
+            }
+        }
+    }
+
     static async createApply(data) {
         const requiredFields = ['name', 'nick', 'discord', 'position', 'elo', 'opgg'];
         this.validateFields(data, requiredFields);
@@ -40,15 +58,7 @@ class ApplyService {
 
     static async getCandidatesAsync(filters){
         const candidates = await Apply.find(filters, '-_id -__v');
-        return candidates;
-    }
-
-    static validateFields(data, fields) {
-        for (const field of fields) {
-            if (!data[field] || data[field].trim() === "") {
-                throw new Error(`O campo ${field} não pode estar vazio.`);
-            }
-        }
+        return candidates.map(candidate => this.formatCandidate(candidate));
     }
 }
 
