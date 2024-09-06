@@ -22,14 +22,13 @@ router.post('/apply', async (req, res) => {
 
 router.get('/candidates', async (req, res) => {
     try {
-        const { elo , position } = req.query;
+        const { elo , position, page = 1, limit = 10 } = req.query;
         const filters = {};
 
         if (elo) filters.elo = elo;
-
         if (position) filters.position = position;
 
-        const candidates = await ApplyService.getCandidatesAsync(filters);
+        const candidates = await ApplyService.getCandidatesAsync(filters, parseInt(page), parseInt(limit));
         res.json(candidates);
     } catch (error) {
         console.error('Erro ao obter candidatos:', error);
