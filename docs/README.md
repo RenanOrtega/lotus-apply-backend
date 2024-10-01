@@ -7,6 +7,7 @@ A ideia era disponibilizar essa API para um time de League of Legends gerenciar 
 ## Projeto com o formulario de inscrição do time
 
 GitHub: https://github.com/RenanOrtega/lotus-apply
+
 Site: https://lotus-apply.vercel.app/
 
 ---
@@ -17,4 +18,5 @@ The idea is to make this API available for a League of Legends team to manage pl
 Team Registration Form Project
 
 GitHub: https://github.com/RenanOrtega/lotus-apply
+
 Website: https://lotus-apply.vercel.app/
